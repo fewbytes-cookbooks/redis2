@@ -46,9 +46,3 @@ directory node["redis2"]["log_dir"] do
   owner node["redis2"]["user"]
   mode "0750"
 end
-
-service "redis" do
-  service_name value_for_platform(:default => "redis", [:ubuntu, :debian] => {:default => "redis-server"})
-  action [:disable, :stop]
-  ignore_failure true
-end
