@@ -17,29 +17,34 @@
 # limitations under the License.
 #
 include_recipe "runit"
-if node[:redis][:install_from] == "package"
+if node["redis2"]["install_from"] == "package"
   include_recipe "redis2::package"
 else
   include_recipe "redis2::source"
 end
 
-user node[:redis][:user] do
-  home node[:redis][:data_dir]
+user node["redis2"]["user"] do
+  home node["redis2"]["data_dir"]
   system true
 end
 
-directory node[:redis][:instances][:default][:data_dir] do
-  owner node[:redis][:user]
+directory node["redis2"]["instances"]["default"]["data_dir"] do
+  owner node["redis2"]["user"]
   mode "0750"
   recursive true
 end
 
-directory node[:redis][:conf_dir]
+directory node["redis2"]["conf_dir"]
 
-directory node[:redis][:pid_dir] do
-  owner node[:redis][:user]
+directory node["redis2"]["pid_dir"] do
+  owner node["redis2"]["user"]
   mode "0750"
   recursive true
+end
+
+directory node["redis2"]["log_dir"] do
+  owner node["redis2"]["user"]
+  mode "0750"
 end
 
 service "redis" do
