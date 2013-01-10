@@ -4,8 +4,12 @@ define :redis_instance, :port => nil, :data_dir => nil, :master => nil, :service
   include_recipe "redis2"
   instance_name = "redis_#{params[:name]}"
   # if no explicit replication role was defined, it's a master
-  node.set["redis2"]["instances"][params[:name]]["replication"]["role"] = "master" \
-    unless node["redis2"]["instances"][params[:name]]["replication"]["role"]
+  begin
+    node.set["redis2"]["instances"][params[:name]]["replication"]["role"] = "master" \
+      unless node["redis2"]["instances"][params[:name]]["replication"]["role"]
+  rescue # in case "replication" attribute doesn't exist or some other sh*t. sigh.
+    node.set["redis2"]["instances"][params[:name]]["replication"]["role"] = "master" \
+  end
 
   init_dir = value_for_platform([:debian, :ubuntu] => {:default => "/etc/init.d/"},
                               [:centos, :redhat] => {:default => "/etc/rc.d/init.d/"},
