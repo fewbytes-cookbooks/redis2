@@ -1,7 +1,7 @@
 # This recipe is for compiling redis from source.
 #
 #
-node["redis2"]["daemon"] = "/usr/local/bin/redis-server"
+node.set["redis2"]["daemon"] = "/usr/local/bin/redis-server"
 directory node["redis2"]["build_dir"] do
   owner node["redis2"]["build_user"]
   mode "0755"
