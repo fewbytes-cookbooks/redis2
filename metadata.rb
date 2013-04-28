@@ -9,6 +9,7 @@ supports         "debian", ">= 6.0"
 supports         "centos", ">= 5.5"
 supports         "redhat", ">= 5.5"
 depends          "runit"
+depends          "build-essential"
 
 recipe           "redis2", "Installs and configures redis"
 recipe           "redis2::auto", "Configures and activates redis instances defined by attributes"

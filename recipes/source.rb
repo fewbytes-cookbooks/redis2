@@ -1,6 +1,8 @@
 # This recipe is for compiling redis from source.
 #
 #
+include_recipe "build-essential"
+
 node.set["redis2"]["daemon"] = "/usr/local/bin/redis-server"
 directory node["redis2"]["build_dir"] do
   owner node["redis2"]["build_user"]
