@@ -2,7 +2,7 @@ maintainer       "Fewbytes Technologies, Inc."
 maintainer_email "avishai@fewbytes.com"
 license          "Apache 2.0"
 description      "Installs/Configures redis"
-long_description IO.read(File.join(File.dirname(__FILE__), 'README.rdoc'))
+long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 name             "redis2"
 version          "0.5.1"
 
