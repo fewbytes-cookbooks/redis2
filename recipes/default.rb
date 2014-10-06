@@ -17,6 +17,12 @@
 # limitations under the License.
 #
 include_recipe "runit"
+include_recipe "sysctl"
+
+sysctl_param "vm.overcommit_memory" do
+  value 1
+end
+
 if node["redis2"]["install_from"] == "package"
   include_recipe "redis2::package"
 else

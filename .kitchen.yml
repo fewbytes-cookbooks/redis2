@@ -1,0 +1,30 @@
+---
+busser:
+  root_path: /var/tmp/kitchen
+
+driver:
+  name: vagrant
+
+provisioner:
+  name: chef_solo
+  kitchen_root: /var/tmp/kitchen
+
+platforms:
+  - name: ubuntu-12.04
+  - name: centos-6.4
+
+suites:
+  - name: package
+    run_list:
+      - recipe[redis2::default_instance]
+    attributes:
+        redis2:
+            install_from: package
+    excludes:
+        - centos-6.4
+  - name: source
+    run_list:
+      - recipe[redis2::default_instance]
+    attributes:
+        redis2:
+            install_from: source

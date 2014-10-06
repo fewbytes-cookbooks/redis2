@@ -4,7 +4,7 @@ license          "Apache 2.0"
 description      "Installs/Configures redis"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.rdoc'))
 name             "redis2"
-version          "0.5.0"
+version          "0.5.1"
 
 supports         "ubuntu", ">= 9.04"
 supports         "debian", ">= 6.0"
@@ -13,6 +13,7 @@ supports         "redhat", ">= 5.5"
 depends          "runit", ">= 1.0.0"
 depends          "build-essential"
 depends          "ark"
+depends          "sysctl"
 
 recipe           "redis2", "Installs and configures redis"
 recipe           "redis2::auto", "Configures and activates redis instances defined by attributes"

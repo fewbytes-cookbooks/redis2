@@ -1,4 +1,10 @@
-define :redis_instance, :port => nil, :data_dir => nil, :master => nil, :service_timeouts => Hash.new do
+define(:redis_instance,
+  :port => nil, 
+  :data_dir => nil, 
+  :master => nil, 
+  :service_timeouts => Hash.new,
+  :nofile => 16384
+) do
   raise ::Chef::Exceptions::InvalidResourceSpecification, "redis instance name can't be \"default\"" \
     if params[:name] == "default"
   include_recipe "redis2"
@@ -75,9 +81,10 @@ define :redis_instance, :port => nil, :data_dir => nil, :master => nil, :service
     log_template_name "redis"
     cookbook "redis2"
     options \
-	  :user => node["redis2"]["user"],
+      :user => node["redis2"]["user"],
       :config_file => ::File.join(node["redis2"]["conf_dir"], "#{instance_name}.conf"),
-      :timeouts => uplevel_params[:service_timeouts]
+      :timeouts => uplevel_params[:service_timeouts],
+      :nofile => uplevel_params[:nofile]
   end
 
 end
