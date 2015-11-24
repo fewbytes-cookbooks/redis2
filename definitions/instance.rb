@@ -57,6 +57,7 @@ define(:redis_instance,
 
   directory conf["data_dir"] do
     owner node["redis2"]["user"]
+    group node["redis2"]["group"]
     mode "0750"
   end
 

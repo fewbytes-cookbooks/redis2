@@ -28,6 +28,7 @@ shared_examples 'redis::default' do
     it "should have a data directory" do
       expect(file("/var/lib/redis/prime")).to be_directory
       expect(file("/var/lib/redis/prime")).to be_owned_by("redis")
+      expect(file("/var/lib/redis/prime")).to be_grouped_into("redis")
       expect(file("/var/lib/redis/prime")).to be_mode("750")
     end
 
